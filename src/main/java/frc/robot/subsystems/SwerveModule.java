@@ -9,6 +9,7 @@ import com.revrobotics.SparkMaxPIDController;
 import edu.wpi.first.math.controller.SimpleMotorFeedforward;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import frc.lib.config.SwerveModuleConstants;
 import frc.lib.math.Conversions;
@@ -87,6 +88,9 @@ public class SwerveModule {
     CANSparkMaxUtil.setCANSparkMaxBusUsage(angleMotor, Usage.kPositionOnly);
     angleMotor.setSmartCurrentLimit(Constants.Swerve.angleContinuousCurrentLimit);
     angleMotor.setInverted(Constants.Swerve.angleInvert);
+
+    Timer.delay(1.0);
+
     angleMotor.setIdleMode(Constants.Swerve.angleNeutralMode);
     integratedAngleEncoder.setPositionConversionFactor(Constants.Swerve.angleConversionFactor);
     angleController.setP(Constants.Swerve.angleKP);
