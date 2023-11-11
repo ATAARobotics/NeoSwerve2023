@@ -34,9 +34,11 @@ public class RobotContainer {
       new JoystickButton(driver, XboxController.Button.kY.value);
   private final JoystickButton robotCentric =
       new JoystickButton(driver, XboxController.Button.kLeftBumper.value);
+    private final JoystickButton goStraight =
+      new JoystickButton(driver, XboxController.Button.kX.value);
 
   /* Subsystems */
-  private final Swerve s_Swerve = new Swerve();
+  public final Swerve s_Swerve = new Swerve();
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -61,8 +63,15 @@ public class RobotContainer {
   private void configureButtonBindings() {
     /* Driver Buttons */
     zeroGyro.whenPressed(new InstantCommand(() -> s_Swerve.zeroGyro()));
-  }
-
+    goStraight.whileTrue(        
+      new TeleopSwerve(
+        s_Swerve,
+          () -> -1,
+          () -> 0,
+          () -> 0,
+          () -> robotCentric.getAsBoolean())
+      );
+    }
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
    *
