@@ -70,7 +70,7 @@ public class RobotContainer {
     goStraight.whileTrue(
         new TeleopSwerve(
             s_Swerve,
-            () -> -0.2,
+            () -> 0.5,
             () -> 0,
             () -> 0,
             () -> robotCentric.getAsBoolean()));

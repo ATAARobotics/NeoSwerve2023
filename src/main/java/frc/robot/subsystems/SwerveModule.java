@@ -150,6 +150,11 @@ public class SwerveModule {
     return Rotation2d.fromDegrees(angleEncoder.getAbsolutePosition());
   }
 
+  
+  public Rotation2d getAngleOffset() {
+    return angleOffset;
+  }
+
   public SwerveModuleState getState() {
     return new SwerveModuleState(driveEncoder.getVelocity(), getAngle());
   }
