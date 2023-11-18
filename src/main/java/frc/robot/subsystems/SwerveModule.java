@@ -35,10 +35,10 @@ public class SwerveModule {
 
   private final SparkMaxPIDController driveController;
   private final SparkMaxPIDController angleController;
-
   private final SimpleMotorFeedforward feedforward = new SimpleMotorFeedforward(
       Constants.Swerve.driveKS, Constants.Swerve.driveKV, Constants.Swerve.driveKA);
-
+  
+  private SwerveModuleState lastSwerveModuleState = new SwerveModuleState(0, Rotation2d.fromDegrees(0));
   public SwerveModule(int moduleNumber, SwerveModuleConstants moduleConstants) {
     this.moduleNumber = moduleNumber;
     angleOffset = moduleConstants.angleOffset;
@@ -67,7 +67,7 @@ public class SwerveModule {
     // controller which
     // REV and CTRE are not
     desiredState = OnboardModuleState.optimize(desiredState, getState().angle);
-
+    lastSwerveModuleState = desiredState;
     setAngle(desiredState);
     setSpeed(desiredState, isOpenLoop);
   }
@@ -97,6 +97,7 @@ public class SwerveModule {
     angleController.setI(Constants.Swerve.angleKI);
     angleController.setD(Constants.Swerve.angleKD);
     angleController.setFF(Constants.Swerve.angleKFF);
+    angleController.setIZone(Constants.Swerve.angleIZone);
     angleMotor.enableVoltageCompensation(Constants.Swerve.voltageComp);
     angleMotor.burnFlash();
     resetToAbsolute();
@@ -157,6 +158,10 @@ public class SwerveModule {
 
   public SwerveModuleState getState() {
     return new SwerveModuleState(driveEncoder.getVelocity(), getAngle());
+  }
+
+  public SwerveModuleState getTargetAngle(){
+    return lastSwerveModuleState;
   }
 
   public SwerveModulePosition getPostition() {

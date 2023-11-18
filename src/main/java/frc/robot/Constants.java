@@ -46,9 +46,10 @@ public final class Constants {
 
     /* Angle Motor PID Values */
     public static final double angleKP = 0.039;
-    public static final double angleKI = 0.0;
+    public static final double angleKI = 0.001;
     public static final double angleKD = 0.0;
     public static final double angleKFF = 0.0;
+    public static final double angleIZone = 0.5;
 
     /* Drive Motor PID Values */
     public static final double driveKP = 0.1;
