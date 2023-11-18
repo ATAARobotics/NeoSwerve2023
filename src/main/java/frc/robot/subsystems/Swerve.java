@@ -108,6 +108,7 @@ public class Swerve extends SubsystemBase {
   @Override
   public void periodic() {
     swerveOdometry.update(getYaw(), getPositions());
+
     field.setRobotPose(getPose());
 
     for (SwerveModule mod : mSwerveMods) {

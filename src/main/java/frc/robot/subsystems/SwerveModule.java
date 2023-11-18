@@ -165,7 +165,6 @@ public class SwerveModule {
   }
 
   public SwerveModulePosition getPostition() {
-    return new SwerveModulePosition(Conversions.neoToMeters(driveEncoder.getPosition(),
-        Constants.Swerve.wheelCircumference, Constants.Swerve.driveGearRatio), getAngle());
+    return new SwerveModulePosition(driveEncoder.getPosition(), getAngle());
   }
 }
