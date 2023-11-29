@@ -41,10 +41,10 @@ public class Swerve extends SubsystemBase {
     };
 
     SwerveModulePosition[] positions = new SwerveModulePosition[] {
-        mSwerveMods[0].getPostition(),
-        mSwerveMods[1].getPostition(),
-        mSwerveMods[2].getPostition(),
-        mSwerveMods[3].getPostition(),
+        mSwerveMods[0].getPosition(),
+        mSwerveMods[1].getPosition(),
+        mSwerveMods[2].getPosition(),
+        mSwerveMods[3].getPosition(),
     };
 
     swerveOdometry = new SwerveDriveOdometry(Constants.Swerve.swerveKinematics, getYaw(), positions);
@@ -120,7 +120,7 @@ public class Swerve extends SubsystemBase {
   public SwerveModulePosition[] getPositions() {
     SwerveModulePosition[] states = new SwerveModulePosition[4];
     for (SwerveModule mod : mSwerveMods) {
-      states[mod.moduleNumber] = mod.getPostition();
+      states[mod.moduleNumber] = mod.getPosition();
     }
     return states;
   }
@@ -136,6 +136,7 @@ public class Swerve extends SubsystemBase {
         ? Rotation2d.fromDegrees(360 - gyro.getYaw())
         : Rotation2d.fromDegrees(gyro.getYaw());
   }
+
 
   @Override
   public void periodic() {

@@ -164,7 +164,7 @@ public class SwerveModule {
     return lastSwerveModuleState;
   }
 
-  public SwerveModulePosition getPostition() {
+  public SwerveModulePosition getPosition() {
     return new SwerveModulePosition(driveEncoder.getPosition(), getAngle());
   }
 }
