@@ -68,8 +68,8 @@ public class RobotContainer {
     nAutoBuilder = new SwerveAutoBuilder(
             s_Swerve::getPose,
             s_Swerve::resetPose,
-            new PIDConstants(0.3, 0.0, 0.0),
-            new PIDConstants(0.1, 0.0, 0.001),
+            new PIDConstants(0.1, 0.0, 0.0),
+            new PIDConstants(0.3, 0.0, 0.001),
             s_Swerve::autoDrive,
             eventMap,
             false,

@@ -63,7 +63,7 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
 
-    PathPlannerTrajectory pathGroup = PathPlanner.loadPath("Example Path", new PathConstraints(0.5, 0.1));
+    PathPlannerTrajectory pathGroup = PathPlanner.loadPath("Cool Path", new PathConstraints(0.5, 0.5));
     m_autonomousCommand = m_robotContainer.nAutoBuilder.fullAuto(pathGroup);
 
     // robotContainer.AutoInit(0);
@@ -73,7 +73,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }
-  }
+  }  
 
   /** This function is called periodically during autonomous. */
   @Override
